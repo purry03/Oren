@@ -31,15 +31,15 @@
                             <% for(const plants of content[1]){ %>
                                 <th><%=plants%></th>
                             <%}%>
-                            </tr>
-                            <% for(const location of content[0]){ %>
-                                <tr>
+                        </tr>
+                        <% for(const location of content[0]){ %>
+                            <tr>
                                 <th><%=location%></th>
                                 <% for(const plants of content[1]){ %>
                                     <td> <textarea></textarea> </td>
                                 <%}%>
-                                </tr>
-                            <%}%>
+                            </tr>
+                        <%}%>
                     </table>
                 <%}%>
                 <% if(type == 3) { %>
@@ -69,7 +69,7 @@
                 <% if(type == 4) { %>
                     <table class="type4" questionId="<%=id%>">
                         <tr>
-                            <th></th>
+                            <th><%=question.title%></th>
                             <th>Yes/No</th>
                             <th>Details</th>
                         </tr>
