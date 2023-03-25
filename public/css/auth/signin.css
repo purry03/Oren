@@ -1,0 +1,52 @@
+#main{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#main h1{
+    font-weight: 300;
+}
+
+#main hr{
+    width: 400px;
+    border-color: rgba(0,0,0,0.5);
+}
+
+#main #button-wrapper{
+    display: flex;
+    gap: 15px;
+}
+
+#main form{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+form label{
+    display: flex;
+    gap:10px;
+    align-items: center;
+    justify-content: left;
+}
+
+form input{
+    margin-left: auto;
+}
+
+form button{
+    margin-top: 10px;
+}
+
+.error{
+    padding: 5px;
+    color: white;
+    background-color: #FF9494;
+    text-align: center;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+}

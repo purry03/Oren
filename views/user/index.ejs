@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Oren</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/normalizer.css">
+    <link rel="stylesheet" href="/static/css/global.css">
+    <link rel="stylesheet" href="/static/css/user/index.css">
+</head>
+
+<body>
+    <%- include('../partials/navbar.ejs', {user}) %>
+
+    <div id="main">
+        <%for(const question of questions) {%>
+            <% const {type,content} = question.data; %>
+            <div class="question">
+                <% if(type == 1) { %>
+                    <div class="type1"><%=content%></div>
+                    <textarea></textarea>
+                <%}%>
+                <% if(type == 2) { %>
+                    <table class="type2" >
+                        <tr>
+                            <th><%=question.title%></th>
+                            <% for(const plants of content[1]){ %>
+                                <th><%=plants%></th>
+                            <%}%>
+                            </tr>
+                            <% for(const location of content[0]){ %>
+                                <tr>
+                                <th><%=location%></th>
+                                <% for(const plants of content[1]){ %>
+                                    <td> <textarea></textarea> </td>
+                                <%}%>
+                                </tr>
+                            <%}%>
+                    </table>
+                <%}%>
+                <% if(type == 3) { %>
+                    <table class="type3" elements="1">
+                        <thead>
+                        <tr>
+                            <th>S. No.</th>
+                            <th><%=content%></th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th class="sno">1</th>
+                            <td><textarea></textarea></td>
+                            <th class="delete-row-button"><i class="fa-regular fa-circle-xmark"></i></th>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th class="add-row-button"><i class="fa-regular fa-square-plus" style="cursor: pointer;"></i></th>
+                            <td style="padding-left: 5px;">Click (+) to add a new row</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                <%}%>
+                <% if(type == 4) { %>
+                    <table class="type4">
+                        <tr>
+                            <th></th>
+                            <th>Yes/No</th>
+                            <th>Details</th>
+                        </tr>
+                        <% for(const heading of content){ %>
+                            <tr>
+                            <th>
+                                <%=heading%>
+                            </th>
+                            <td>
+                                <select>
+                                    <option>N/A</option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                            </td>
+                            <td>
+                                <textarea></textarea>
+                            </td>
+                        </tr>
+                        <%}%>
+                    </table>
+                <% } %>
+            </div>
+        <%}%>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>
+
+
+        <script src="/static/js/fontawesome.js"></script>
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/notify.js" async defer></script>
+        <script src="/static/js/global.js" async defer></script>
+        <script src="/static/js/user/index.js" async defer></script>
+</body>
+
+</html>
