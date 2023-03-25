@@ -17,14 +17,15 @@
 
     <div id="main">
         <%for(const question of questions) {%>
+            <% const {id,inputType} = question; %>
             <% const {type,content} = question.data; %>
             <div class="question">
                 <% if(type == 1) { %>
-                    <div class="type1"><%=content%></div>
+                    <div class="type1" questionId="<%=id%>"><%=content%></div>
                     <textarea></textarea>
                 <%}%>
                 <% if(type == 2) { %>
-                    <table class="type2" >
+                    <table class="type2" questionId="<%=id%>">
                         <tr>
                             <th><%=question.title%></th>
                             <% for(const plants of content[1]){ %>
@@ -42,7 +43,7 @@
                     </table>
                 <%}%>
                 <% if(type == 3) { %>
-                    <table class="type3" elements="1">
+                    <table class="type3" elements="1" questionId="<%=id%>">
                         <thead>
                         <tr>
                             <th>S. No.</th>
@@ -66,7 +67,7 @@
                     </table>
                 <%}%>
                 <% if(type == 4) { %>
-                    <table class="type4">
+                    <table class="type4" questionId="<%=id%>">
                         <tr>
                             <th></th>
                             <th>Yes/No</th>
@@ -79,9 +80,9 @@
                             </th>
                             <td>
                                 <select>
-                                    <option>N/A</option>
-                                    <option>Yes</option>
-                                    <option>No</option>
+                                    <option value="N/A">N/A</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>
                             </td>
                             <td>
@@ -94,8 +95,6 @@
             </div>
         <%}%>
         </div>
-
-        <%- include('../partials/footer.ejs') %>
 
 
         <script src="/static/js/fontawesome.js"></script>
