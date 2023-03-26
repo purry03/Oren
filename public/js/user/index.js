@@ -5,7 +5,7 @@ const response = {};
 function calculateResponse(textarea) {
 	const questionElement = $(textarea).closest('div').find('[questionId]');
 	const type = questionElement.attr('class');
-	const questionId = questionElement.attr('questionId');
+	const questionId = (questionElement.attr('questionId')).toString();
 	switch(type){
 	case 'type1':
 		const value = $(textarea).val();
@@ -150,4 +150,14 @@ function()
 	});
 };
 
-$(".number").ForceNumericOnly();
+$('.number').ForceNumericOnly();
+
+$('.submit').on('click',function(){
+	console.log(response);
+	$.ajax({
+		type: 'POST',
+		url: '/response/',
+		data: JSON.stringify(response), // or JSON.stringify ({name: 'jonas'}),
+		success: function(data) { alert('data: ' + data); },
+		contentType: 'application/json; charset=utf-8',	});
+});

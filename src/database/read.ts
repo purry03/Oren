@@ -26,3 +26,10 @@ export async function getAllQuestions(): Promise<User[]>{
 	const questions = await (await database.query(text)).rows;
 	return questions;
 }
+
+export async function getReponseByUser(userId: number): Promise<User[]>{
+	const text = 'SELECT * FROM responses WHERE user_id = $1';
+	const values = [userId];
+	const response = await (await database.query(text, values)).rows[0];
+	return response;
+}

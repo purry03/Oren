@@ -1,8 +1,7 @@
 import express from 'express';
 import * as auth from '../../services/auth';
 import * as user from '../../services/user';
-import * as admin from '../../services/admin';
-import { requireAdminAuth, requireUserAuth } from '../middlewares/auth';
+import { requireUserAuth } from '../middlewares/auth';
 
 const router = express.Router();
 
@@ -28,6 +27,14 @@ router.post('/auth/register',(req,res)=>{
 
 router.get('/', requireUserAuth ,(req,res)=> {
 	user.getIndex(req,res);
+});
+
+router.get('/response', requireUserAuth ,(req,res)=> {
+	user.getReponses(req,res);
+});
+
+router.post('/response', requireUserAuth ,(req,res)=> {
+	user.postResponse(req,res);
 });
 
 export default router;

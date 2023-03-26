@@ -88,3 +88,8 @@ select{
 .invisible{
     display: none;
 }
+
+.submit{
+    margin-top: 20px;
+    width: 100px;
+}
