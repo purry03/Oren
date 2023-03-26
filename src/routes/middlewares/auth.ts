@@ -7,11 +7,13 @@ import { errorHandler } from './error';
 export async function authExtract(req: Request, res: Response, next: NextFunction) {
 	try{
 		let sessionToken = '';
-		const authHeader = req.headers.authorization?.split(' ')[1];
+		const authHeader = req.headers.authorization?.split(' ')[1];	// get auth header
 		if(authHeader !== null){
+			// extract token from header if supplied
 			sessionToken = authHeader!;
 		}
 		else{
+			// else use cookies
 			sessionToken = req.cookies.sessionToken;
 		}
 		if(sessionToken === undefined || sessionToken === ''){
@@ -19,10 +21,9 @@ export async function authExtract(req: Request, res: Response, next: NextFunctio
 			req.user = null;
 		}
 		else{
-			const token = await jwt.verify(sessionToken,config.JWTSECRET!) as {sub:string,admin:boolean,dev:boolean,roles: string[]};
+			const token = await jwt.verify(sessionToken,config.JWTSECRET!) as {sub:string};
 			req.user = {
 				name: token.sub,
-				admin: token.admin,
 			};
 		}	
 		next();
