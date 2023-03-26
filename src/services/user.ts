@@ -18,5 +18,5 @@ export async function getReponses(req: Request,res: Response){
 export async function postResponse(req: Request,res: Response){
 	const user = await getUserByName(req.user!.name);
 	await addResponse(user.id, JSON.stringify(req.body));
-	res.send('done');
+	res.sendStatus(200);
 }

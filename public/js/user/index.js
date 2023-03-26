@@ -61,11 +61,11 @@ function calculateResponse(textarea) {
 * this is so that the response object is
 * intialized with a default value
 */
-document.addEventListener('DOMContentLoaded', function() {
+window.onload = function() {
 	$('textarea', $(document.body)).each(function () {
 		calculateResponse(this);
 	});	
-}, false);
+}
 
 
 /*
@@ -153,11 +153,10 @@ function()
 $('.number').ForceNumericOnly();
 
 $('.submit').on('click',function(){
-	console.log(response);
 	$.ajax({
 		type: 'POST',
 		url: '/response/',
-		data: JSON.stringify(response), // or JSON.stringify ({name: 'jonas'}),
-		success: function(data) { alert('data: ' + data); },
+		data: JSON.stringify(response),
+		success: function(data) { alert('Response Submitted Successfully'); },
 		contentType: 'application/json; charset=utf-8',	});
 });
