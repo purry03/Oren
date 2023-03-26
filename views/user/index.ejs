@@ -16,6 +16,7 @@
     <%- include('../partials/navbar.ejs', {user}) %>
 
     <div id="main">
+        <h2>ESG Form</h2>
         <%for(const question of questions) {%>
             <% const {id,inputType} = question; %>
             <% const {type,content} = question.data; %>

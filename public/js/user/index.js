@@ -65,6 +65,9 @@ window.onload = function() {
 	$('textarea', $(document.body)).each(function () {
 		calculateResponse(this);
 	});	
+	$('select', $(document.body)).each(function () {
+		calculateResponse(this);
+	});
 }
 
 
@@ -73,6 +76,10 @@ window.onload = function() {
 * call calculateResponse()
 */
 $(document.body).on('input','textarea', function (e) {
+	calculateResponse(this);
+});
+
+$(document.body).on('change','select', function (e) {
 	calculateResponse(this);
 });
 

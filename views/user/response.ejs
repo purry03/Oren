@@ -17,6 +17,11 @@
     <%- include('../partials/navbar.ejs', {user}) %>
 
     <div id="main">
+        <% if(response === undefined){ %>
+            <h2>No Response Submitted Yet</h2>
+            <a href="/">Fill The Form</a>
+        <%}%>
+        <% if(response !== undefined){ %>
         <h2 style="margin: 0;">Submitted Response</h2>
         <h4 style="margin: 0; margin-bottom: 20px;">All fields are readonly</h4>
         <%for(const question of questions) {%>
@@ -138,6 +143,7 @@
                 <%}%>
             </div>
         <%}%>
+        <%}%>   
         </div>
 
 
