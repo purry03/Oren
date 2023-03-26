@@ -10,6 +10,7 @@ export async function getQuestionsAPI(req: Request,res: Response){
 	else{
 		const question = await getQuestionByID(filter);
 		if(typeof question === 'undefined'){
+			// if question does not exist
 			res.send([]);
 			return;
 		}
