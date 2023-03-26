@@ -25,13 +25,13 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 	const prettyResponses: any = {};
 
 	const data = response.data;
-	for(const key in data){
-		const value = data[key];
-		// find value in questions
+	for(const questionId in data){
+		const responseData = data[questionId];
+		// find responseData in questions
 		let title = '';
 		let question: {type: number, content: any} = {type:0, content: ''};
 		for(const q of questions){
-			if(q.id.toString() === key){
+			if(q.id.toString() === questionId){
 				question = q.data;
 				title = q.title;
 				break;
@@ -40,7 +40,7 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 		let idx = 0;
 		switch(question.type){
 		case 1:	
-			prettyResponses[question.content] = value;
+			prettyResponses[question.content] = responseData;
 			break;
 		case 2:
 			prettyResponses[title] = {};
@@ -48,14 +48,14 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 			for(const row of question.content[0]){
 				prettyResponses[title][row] = {};
 				for(const col of question.content[1]){
-					prettyResponses[title][row][col] = value[idx];
+					prettyResponses[title][row][col] = responseData[idx];
 					idx+=1;
 				}
 			}
 			break;
 		case 3:
 			prettyResponses[question.content] = [];
-			for(const itm of value){
+			for(const itm of responseData){
 				prettyResponses[question.content].push(itm);
 			}
 			break;
@@ -64,8 +64,8 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 			idx = 0;
 			for(const row of question.content){
 				prettyResponses[title][row] = {};
-				prettyResponses[title][row]['Yes/No'] = value[idx*2];
-				prettyResponses[title][row]['Details'] = value[idx*2+1];
+				prettyResponses[title][row]['Yes/No'] = responseData[idx*2];
+				prettyResponses[title][row]['Details'] = responseData[idx*2+1];
 
 				idx += 1;
 			}
@@ -79,7 +79,7 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 				for(const row of tabData[0]){
 					prettyResponses[tab][row] = {};
 					for(const col of tabData[1]){
-						prettyResponses[tab][row][col] = value[tabIdx][idx];
+						prettyResponses[tab][row][col] = responseData[tabIdx][idx];
 						idx+=1;
 					}
 				}
