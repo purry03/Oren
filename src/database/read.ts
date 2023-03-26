@@ -20,7 +20,9 @@ export async function getAllUsers(): Promise<UserAttributes[]>{
 }
 
 export async function getAllQuestions(): Promise<QuestionAttributes[]>{
-	const questions = await Question.findAll();
+	const questions = await Question.findAll({
+		order: [['id','ASC']]
+	});
 	return questions;
 }
 
