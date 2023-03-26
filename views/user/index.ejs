@@ -94,6 +94,46 @@
                         <%}%>
                     </table>
                 <% } %>
+                <% if(type == 5){ %>
+
+                    <div class="vertical">
+
+                    <% let tabCount = 0; %>
+
+                    <% for(const tab in content){ %>
+                        <button class='tab <%if(tabCount===0){%>activated<%}%>' tabCount="<%=tabCount%>"><%=tab%></button>
+                        <% tabCount += 1 ; %>
+                    <%}%>
+
+                    <% tabCount = 0 ; %>
+
+                    <% for(const tab in content){ %>
+
+                        <%const tabData = content[tab];%>
+                        <table class="type5 <% if(tabCount !== 0) {%>invisible<%}%> tab<%=tabCount%>" questionId="<%=id%>">
+                            <tr>
+                                <th><%=question.title%></th>
+                                <% for(const plants of tabData[1]){ %>
+                                    <th><%=plants%></th>
+                                <%}%>
+                            </tr>
+                            <% for(const location of tabData[0]){ %>
+                                <tr>
+                                    <th><%=location%></th>
+                                    <% for(const plants of tabData[1]){ %>
+                                        <td>
+                                            <textarea class="number" placeholder="Enter Numbers Only"></textarea>
+                                        </td>
+                                    <%}%>
+                                </tr>
+                            <%}%>
+                        </table>
+                        <% tabCount += 1 ; %>
+                    <%}%>
+
+                    </div>
+
+                <%}%>
             </div>
         <%}%>
         </div>

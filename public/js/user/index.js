@@ -35,6 +35,22 @@ function calculateResponse(textarea) {
 			response[questionId].push(value);
 		});
 		break;
+	default:
+		// get vertical div
+		const verticalDiv = $(questionElement).closest('.vertical');
+		// for each table in div
+		response[questionId] = [];
+		$('table', $(verticalDiv)).each(function(){
+			// generate array of responses
+			const arr = [];
+			$('textarea', $(this)).each(function(){
+				const value = $(this).val();
+				arr.push(value);
+				// push array to response[questionid]
+			});
+			response[questionId].push(arr);
+		});
+		break;
 	}
 }
 
@@ -89,6 +105,25 @@ $(document.body).on('click','.delete-row-button' ,function (e) {
 	// recalcuate response
 	const childTextarea = table.find('textarea');	// get any child textarea of the table
 	calculateResponse(childTextarea);
+});
+
+
+// type 5 tab selection
+$(document.body).on('click','.tab' ,function (e) {
+	const parent = $(this).closest('.vertical');
+	const currentTabCount = $(this).attr('tabCount');
+	// set all tabs to deactivated
+	$('.tab', $(parent)).each(function () {
+		$(this).removeClass('activated');		
+	});
+	// set this tab to activated
+	$(this).addClass('activated');
+	// hide all tables
+	$('table', $(parent)).each(function () {
+		$(this).addClass('invisible');		
+	});
+	// set this tab's table to activated
+	$(`.tab${currentTabCount}`).removeClass('invisible');
 });
 
 jQuery.fn.ForceNumericOnly =

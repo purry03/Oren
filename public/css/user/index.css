@@ -60,3 +60,31 @@ select{
 .number{
     resize: none;
 }
+
+.vertical{
+    width: 750px;
+    margin-top: 25px;
+}
+
+.vertical table{
+    width: 100%;
+}
+
+
+.vertical button{
+    border: none;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+
+.vertical .activated{
+    color: #1e2b56;
+    font-weight: 900;
+    border: #1e2b56 2px solid;
+    border-width: 0 0 2px 0;
+}
+
+.invisible{
+    display: none;
+}
