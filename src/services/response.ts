@@ -7,13 +7,13 @@ import { addResponse } from '../database/write';
 export async function getReponses(req: Request,res: Response){
 	const user = await getUserByName(req.user!.name);
 	const questions = await getAllQuestions();
-	const response = await getReponseByUser(user.id);
+	const response = await getReponseByUser(user!.id);
 	res.render('user/response',{user, questions, response});
 }
 
 export async function postResponse(req: Request,res: Response){
 	const user = await getUserByName(req.user!.name);
-	await addResponse(user.id, JSON.stringify(req.body));
+	await addResponse(user!.id, req.body);
 	res.sendStatus(200);
 }
 
@@ -21,7 +21,7 @@ export async function getResponseAPI(req: Request,res: Response,next: NextFuncti
 	try{
 		const userId = parseInt(req.params.userId);
 		const user = await getUserByName(req.user!.name);
-		if(userId !== user.id){
+		if(userId !== user!.id){
 			res.redirect(403, '/auth');
 			return;
 		}
@@ -40,7 +40,7 @@ export async function getResponseAPI(req: Request,res: Response,next: NextFuncti
 export async function getPrettyResponseAPI(req: Request,res: Response){
 	const userId = parseInt(req.params.userId);
 	const user = await getUserByName(req.user!.name);
-	if(userId !== user.id){
+	if(userId !== user!.id){
 		res.redirect(403, '/auth');
 		return;
 	}
@@ -48,16 +48,16 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 	const questions = await getAllQuestions();
 	const prettyResponses: any = {};
 
-	const data = response.data;
+	const data: any = response!.data;
 	for(const questionId in data){
 		const responseData = data[questionId];
 		// find responseData in questions
 		let title = '';
-		let question: {type: number, content: any} = {type:0, content: ''};
+		let question: any = {type:0, content: ''};
 		for(const q of questions){
 			if(q.id.toString() === questionId){
 				question = q.data;
-				title = q.title;
+				title = q.title!;
 				break;
 			}
 		}

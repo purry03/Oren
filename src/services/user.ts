@@ -20,7 +20,7 @@ export async function getUsersAPI(req: Request,res: Response){
 			res.send([]);
 			return;
 		}
-		delete user['password'];
+		delete user!['password'];
 		res.send([user]);
 	}
 }
