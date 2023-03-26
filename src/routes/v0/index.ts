@@ -31,14 +31,6 @@ router.get('/', requireUserAuth ,(req,res)=> {
 	user.getIndex(req,res);
 });
 
-router.get('/response', requireUserAuth ,(req,res)=> {
-	user.getReponses(req,res);
-});
-
-router.post('/response', requireUserAuth ,(req,res)=> {
-	user.postResponse(req,res);
-});
-
 router.get('/api/users/get/:filter', (req,res)=> {
 	user.getUsersAPI(req,res);
 });
@@ -47,11 +39,19 @@ router.get('/api/questions/get/:filter', (req,res)=> {
 	question.getQuestionsAPI(req,res);
 });
 
-router.get('/api/responses/get/:filter', (req,res)=> {
-	response.getResponseAPI(req,res);
+router.get('/response', requireUserAuth ,(req,res)=> {
+	response.getReponses(req,res);
 });
 
-router.get('/api/responses/get/pretty/:userId', (req,res)=> {
+router.post('/response', requireUserAuth ,(req,res)=> {
+	response.postResponse(req,res);
+});
+
+router.get('/api/responses/get/:userId',requireUserAuth, (req,res,next)=> {
+	response.getResponseAPI(req,res,next);
+});
+
+router.get('/api/responses/get/pretty/:userId',requireUserAuth, (req,res)=> {
 	response.getPrettyResponseAPI(req,res);
 });
 

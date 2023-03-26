@@ -25,25 +25,11 @@ export async function requireUserAuth(req: Request, res: Response, next: NextFun
 			next();
 		}
 		else{
-			res.redirect('/auth/signin');
+			res.redirect(403,'/auth/signin');
 		}
 	}
 	else{
 		// redirect to login page
-		res.redirect('/auth/signin');
-	}
-}
-
-export async function requireAdminAuth(req: Request, res: Response, next: NextFunction) {
-	if(req.user != null){
-		if(req.user.admin){
-			next();
-		}
-		else{
-			res.render('error/403');
-		}
-	}
-	else{
-		res.render('error/403');
+		res.redirect(403, '/auth/signin');
 	}
 }

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {getAllQuestions, getAllUsers, getQuestionByID, getUserByID} from '../database/read';
+import {getAllQuestions, getQuestionByID} from '../database/read';
 
 export async function getQuestionsAPI(req: Request,res: Response){
 	const {filter} = req.params;

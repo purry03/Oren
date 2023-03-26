@@ -92,7 +92,7 @@
                                 </select>
                             </td>
                             <td>
-                                <textarea><%=response.data[id][idx]%></textarea>
+                                <textarea readonly><%=response.data[id][idx]%></textarea>
                                 <% idx +=1; %>
                             </td>
                         </tr>
@@ -128,7 +128,7 @@
                                     <th><%=location%></th>
                                     <% for(const plants of tabData[1]){ %>
                                         <td>
-                                            <textarea><%=response.data[id][tabCount][idx]%></textarea>
+                                            <textarea readonly><%=response.data[id][tabCount][idx]%></textarea>
                                             <% idx +=1; %>
                                         </td>
                                     <%}%>
@@ -149,8 +149,6 @@
 
         <script src="/static/js/fontawesome.js"></script>
         <script src="/static/js/jquery.js"></script>
-        <script src="/static/js/notify.js" async defer></script>
-        <script src="/static/js/global.js" async defer></script>
         <script src="/static/js/user/index.js" async defer></script>
 </body>
 

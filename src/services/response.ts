@@ -1,25 +1,49 @@
 /* eslint-disable no-case-declarations */
-import { Request, Response } from 'express';
-import {getAllQuestions, getAllResponses, getReponseByID, getReponseByUser} from '../database/read';
+import { NextFunction, Request, Response } from 'express';
+import {getAllQuestions, getReponseByUser, getUserByName} from '../database/read';
+import { addResponse } from '../database/write';
 
-export async function getResponseAPI(req: Request,res: Response){
-	const {filter} = req.params;
-	if(filter === 'all'){
-		const questions = await getAllResponses();
-		res.send(questions);
-	}
-	else{
-		const question = await getReponseByUser(filter);
+
+export async function getReponses(req: Request,res: Response){
+	const user = await getUserByName(req.user!.name);
+	const questions = await getAllQuestions();
+	const response = await getReponseByUser(user.id);
+	res.render('user/response',{user, questions, response});
+}
+
+export async function postResponse(req: Request,res: Response){
+	const user = await getUserByName(req.user!.name);
+	await addResponse(user.id, JSON.stringify(req.body));
+	res.sendStatus(200);
+}
+
+export async function getResponseAPI(req: Request,res: Response,next: NextFunction){
+	try{
+		const userId = parseInt(req.params.userId);
+		const user = await getUserByName(req.user!.name);
+		if(userId !== user.id){
+			res.redirect(403, '/auth');
+			return;
+		}
+		const question = await getReponseByUser(userId);
 		if(typeof question === 'undefined'){
 			res.send([]);
 			return;
 		}
 		res.send([question]);
 	}
+	catch(err){
+		next(err);
+	}
 }
 
 export async function getPrettyResponseAPI(req: Request,res: Response){
-	const {userId} = req.params;
+	const userId = parseInt(req.params.userId);
+	const user = await getUserByName(req.user!.name);
+	if(userId !== user.id){
+		res.redirect(403, '/auth');
+		return;
+	}
 	const response = await getReponseByUser(userId);
 	const questions = await getAllQuestions();
 	const prettyResponses: any = {};

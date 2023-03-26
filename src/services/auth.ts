@@ -22,7 +22,7 @@ export async function postSignin(req: Request,res: Response){
 		const user = await getUserByName(name);
 		if(user === undefined){
 			// user not found with this name
-			res.render('auth/signin',{error: true});
+			res.status(403).render('auth/signin',{error: true});
 			return;
 		}
 		const isPasswordSame = await bcrypt.compare(password, user.password!);
