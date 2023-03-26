@@ -80,6 +80,7 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 					prettyResponses[tab][row] = {};
 					for(const col of tabData[1]){
 						prettyResponses[tab][row][col] = value[tabIdx][idx];
+						idx+=1;
 					}
 				}
 				tabIdx += 1;
