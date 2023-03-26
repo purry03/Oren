@@ -1,0 +1,18 @@
+import { Request, Response } from 'express';
+import {getAllQuestions, getAllUsers, getQuestionByID, getUserByID} from '../database/read';
+
+export async function getQuestionsAPI(req: Request,res: Response){
+	const {filter} = req.params;
+	if(filter === 'all'){
+		const questions = await getAllQuestions();
+		res.send(questions);
+	}
+	else{
+		const question = await getQuestionByID(filter);
+		if(typeof question === 'undefined'){
+			res.send([]);
+			return;
+		}
+		res.send([question]);
+	}
+}

@@ -25,7 +25,7 @@ export async function postSignin(req: Request,res: Response){
 			res.render('auth/signin',{error: true});
 			return;
 		}
-		const isPasswordSame = await bcrypt.compare(password, user.password);
+		const isPasswordSame = await bcrypt.compare(password, user.password!);
 		if(isPasswordSame){
 			const token = jwt.sign({
 				sub: name,

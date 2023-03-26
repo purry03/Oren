@@ -1,6 +1,8 @@
 import express from 'express';
 import * as auth from '../../services/auth';
 import * as user from '../../services/user';
+import * as question from '../../services/question';
+import * as response from '../../services/response';
 import { requireUserAuth } from '../middlewares/auth';
 
 const router = express.Router();
@@ -35,6 +37,22 @@ router.get('/response', requireUserAuth ,(req,res)=> {
 
 router.post('/response', requireUserAuth ,(req,res)=> {
 	user.postResponse(req,res);
+});
+
+router.get('/api/users/get/:filter', (req,res)=> {
+	user.getUsersAPI(req,res);
+});
+
+router.get('/api/questions/get/:filter', (req,res)=> {
+	question.getQuestionsAPI(req,res);
+});
+
+router.get('/api/responses/get/:filter', (req,res)=> {
+	response.getResponseAPI(req,res);
+});
+
+router.get('/api/responses/get/pretty/:userId', (req,res)=> {
+	response.getPrettyResponseAPI(req,res);
 });
 
 export default router;

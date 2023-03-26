@@ -1,4 +1,4 @@
-import { User } from '../declarations';
+import { Question, User, Response } from '../declarations';
 import database from './index';
 
 export async function getUserByName(name: string): Promise<User>{
@@ -21,15 +21,35 @@ export async function getAllUsers(): Promise<User[]>{
 	return users;
 }
 
-export async function getAllQuestions(): Promise<User[]>{
+export async function getAllQuestions(): Promise<Question[]>{
 	const text = 'SELECT * FROM questions ORDER BY id ASC';
 	const questions = await (await database.query(text)).rows;
 	return questions;
 }
 
-export async function getReponseByUser(userId: number): Promise<User[]>{
+export async function getQuestionByID(id: number|string): Promise<Question>{
+	const text = 'SELECT * FROM questions WHERE id = $1';
+	const values = [id];
+	const question = await (await database.query(text,values)).rows[0];
+	return question;
+}
+
+export async function getReponseByUser(userId: number|string): Promise<Response>{
 	const text = 'SELECT * FROM responses WHERE user_id = $1';
 	const values = [userId];
 	const response = await (await database.query(text, values)).rows[0];
+	return response;
+}
+
+export async function getReponseByID(id: number): Promise<Response>{
+	const text = 'SELECT * FROM responses WHERE id = $1';
+	const values = [id];
+	const response = await (await database.query(text, values)).rows[0];
+	return response;
+}
+
+export async function getAllResponses(): Promise<Response[]>{
+	const text = 'SELECT * FROM responses ORDER BY id ASC';
+	const response = await (await database.query(text)).rows;
 	return response;
 }
