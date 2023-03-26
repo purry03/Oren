@@ -57,3 +57,6 @@ select{
     border: solid 1px #ccc;
 }
 
+.number{
+    resize: none;
+}

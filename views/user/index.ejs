@@ -22,7 +22,7 @@
             <div class="question">
                 <% if(type == 1) { %>
                     <div class="type1" questionId="<%=id%>"><%=content%></div>
-                    <textarea></textarea>
+                    <textarea <% if(inputType === 'number'){ %> class="number" placeholder="Enter Numbers Only" <% } %>></textarea>
                 <%}%>
                 <% if(type == 2) { %>
                     <table class="type2" questionId="<%=id%>">
@@ -36,7 +36,9 @@
                             <tr>
                                 <th><%=location%></th>
                                 <% for(const plants of content[1]){ %>
-                                    <td> <textarea></textarea> </td>
+                                    <td>
+                                        <textarea class="number" placeholder="Enter Numbers Only"></textarea>
+                                    </td>
                                 <%}%>
                             </tr>
                         <%}%>
@@ -54,7 +56,7 @@
                         <tbody>
                         <tr>
                             <th class="sno">1</th>
-                            <td><textarea></textarea></td>
+                            <td><textarea <% if(inputType === 'number'){ %> class="number" placeholder="Enter Numbers Only" <% } %>></textarea></td>
                             <th class="delete-row-button"><i class="fa-regular fa-circle-xmark"></i></th>
                         </tr>
                         </tbody>
@@ -86,7 +88,7 @@
                                 </select>
                             </td>
                             <td>
-                                <textarea></textarea>
+                                <textarea <% if(inputType === 'number'){ %> class="number" placeholder="Enter Numbers Only" <% } %>></textarea>
                             </td>
                         </tr>
                         <%}%>
