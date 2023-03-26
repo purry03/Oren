@@ -19,12 +19,20 @@ router.post('/auth/signin',(req,res)=>{
 	auth.postSignin(req,res);
 });
 
+router.post('/api/auth/signin',(req,res)=>{
+	auth.postSigninAPI(req,res);
+});
+
 router.get('/auth/register',(req,res)=>{
 	auth.getRegister(req,res);
 });
 
 router.post('/auth/register',(req,res)=>{
 	auth.postRegister(req,res);
+});
+
+router.post('/api/auth/register',(req,res)=>{
+	auth.postRegisterAPI(req,res);
 });
 
 router.get('/', requireUserAuth ,(req,res)=> {
