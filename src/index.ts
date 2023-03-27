@@ -21,14 +21,14 @@ app.set('views', path.join(__dirname,'..', '/views'));   // set views directory
 
 // Basic Middlewares
 app.use(helmet({
-	contentSecurityPolicy: false,
+	contentSecurityPolicy: false,	// needed for font-awesome icons to load
 }));  // obscure headers for security
-app.use(minify());
+app.use(minify());	// minifies css and js on the fly
 app.use('/static', express.static(path.join(__dirname,'..','/public'))); // set static directory
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload({
-	limits: { fileSize: 50 * 1024 * 1024 },
+	limits: { fileSize: 50 * 1024 * 1024 },	// 50 MB upload limit
 }));
 app.use(cookieParser());
 app.use(authExtract);

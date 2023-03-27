@@ -179,11 +179,11 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 				}
 			}
 
-			if(title !== '' && title !== null){
-				prettyResponses['attachements'][title] = {uuid,name};
+			if(title !== '' && title !== null){	// if question has a title
+				prettyResponses['attachements'][title] = {uuid,name};	// then display attachment with title
 			}
 			else{
-				prettyResponses['attachements'][question.content] = {uuid,name};
+				prettyResponses['attachements'][question.content] = {uuid,name};	// otherwise use question content
 			}
 
 		}
