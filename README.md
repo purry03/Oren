@@ -399,7 +399,7 @@ Possible Options:
 - uuid -> downloads the file with the given uuid that belong to this user
 
 Example:
-`/api/responses/file/:uuid`
+`/responses/file/:uuid`
 
 Method: **GET**<br/>
 Response: Downloads the attachment
