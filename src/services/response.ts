@@ -90,6 +90,10 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 		return;
 	}
 	const response = await getReponseByUser(userId);
+	if(response === null){
+		res.send([]);
+		return;
+	}
 	const files = await getFilesByUser(userId);
 	const questions = await getAllQuestions();
 	const prettyResponses: any = {};	// initialize to empty object
