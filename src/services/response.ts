@@ -104,6 +104,8 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 
 	const data: any = response!.data;	// extract response
 
+	prettyResponses['questions'] = {};
+
 	// handle questions
 	for(const questionId in data){
 		const responseData = data[questionId];	// store response data
@@ -120,32 +122,32 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 		let idx = 0;
 		switch(question.type){
 		case 1:	// general text questions
-			prettyResponses[question.content] = responseData;	// store as {question:response}
+			prettyResponses['questions'][question.content] = responseData;	// store as {question:response}
 			break;
 		case 2:	// tabular questions
-			prettyResponses[title] = {};
+			prettyResponses['questions'][title] = {};
 			idx = 0;
 			for(const col of question.content[1]){
-				prettyResponses[title][col] = {};
+				prettyResponses['questions'][title][col] = {};
 				for(const row of question.content[0]){
-					prettyResponses[title][col][row] = responseData[idx];
+					prettyResponses['questions'][title][col][row] = responseData[idx];
 					idx+=1;
 				}
 			}
 			break;
 		case 3:	// dynamic row questions
-			prettyResponses[question.content] = [];
+			prettyResponses['questions'][question.content] = [];
 			for(const itm of responseData){
-				prettyResponses[question.content].push(itm);
+				prettyResponses['questions'][question.content].push(itm);
 			}
 			break;
 		case 4:	// yes/no + details questions
-			prettyResponses[title] = {};
+			prettyResponses['questions'][title] = {};
 			idx = 0;
 			for(const row of question.content){
-				prettyResponses[title][row] = {};
-				prettyResponses[title][row]['Yes/No'] = responseData[idx*2];
-				prettyResponses[title][row]['Details'] = responseData[idx*2+1];
+				prettyResponses['questions'][title][row] = {};
+				prettyResponses['questions'][title][row]['Yes/No'] = responseData[idx*2];
+				prettyResponses['questions'][title][row]['Details'] = responseData[idx*2+1];
 
 				idx += 1;
 			}
@@ -153,13 +155,13 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 		case 5:	// tabular quesstions with multiple tabs
 			let tabIdx = 0;
 			for(const tab in question.content){
-				prettyResponses[tab] = {};
+				prettyResponses['questions'][tab] = {};
 				const tabData = question.content[tab];	// extract responses for one tab
 				idx = 0;
 				for(const col of tabData[1]){	// generate key value pairs for the tab
-					prettyResponses[tab][col] = {};
+					prettyResponses['questions'][tab][col] = {};
 					for(const row of tabData[0]){
-						prettyResponses[tab][col][row] = responseData[tabIdx][idx];
+						prettyResponses['questions'][tab][col][row] = responseData[tabIdx][idx];
 						idx+=1;
 					}
 				}
