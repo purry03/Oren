@@ -391,7 +391,7 @@ Response:
 <br />
 
 
-#### `/api/responses/file/:uuid`:
+#### `/responses/file/:uuid`:
 
 Parameter:
 
