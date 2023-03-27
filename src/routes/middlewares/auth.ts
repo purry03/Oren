@@ -40,11 +40,11 @@ export async function requireUserAuth(req: Request, res: Response, next: NextFun
 			next();
 		}
 		else{
-			res.redirect(403,'/auth/signin');
+			res.redirect(403,'/auth');
 		}
 	}
 	else{
 		// redirect to login page
-		res.redirect(403, '/auth/signin');
+		res.redirect(403, '/auth');
 	}
 }
