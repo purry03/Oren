@@ -15,8 +15,9 @@ exports.up = pgm => {
 	});
 	pgm.createTable('questions',{
 		id: 'id',
-		type: { type: 'varchar(50)', notNull: true },
+		inputType: { type: 'varchar(50)', notNull: true },
 		data: {type: 'json', notNull: true},
+		title: { type: 'varchar(50)'},
 		createdAt: {
 			type: 'timestamp',
 			notNull: true,

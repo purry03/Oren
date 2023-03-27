@@ -9,12 +9,12 @@ export async function addUser(name: string,password: string){
 }
 
 export async function addResponse(user: number,data: object){
-	await Response.destroy({
+	await Response.destroy({	// remove any existing response for this user
 		where: {
 			user_id: user
 		}
 	});
-	await Response.create({
+	await Response.create({	// add a new response
 		user_id: user,
 		data
 	});
@@ -22,12 +22,12 @@ export async function addResponse(user: number,data: object){
 }
 
 export async function addFile(user: number,data: object){
-	await File.destroy({
+	await File.destroy({	// remove any existing file for this user
 		where: {
 			user_id: user
 		}
 	});
-	await File.create({
+	await File.create({	// add a new file
 		user_id: user,
 		data
 	});
