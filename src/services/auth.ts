@@ -20,7 +20,7 @@ export async function postSignin(req: Request,res: Response){
 	try{
 		const {name,password} = req.body;
 		const user = await getUserByName(name);
-		if(user === undefined){
+		if(user === undefined || user === null){
 			// user not found with this name
 			res.status(403).render('auth/signin',{error: true});
 			return;
@@ -52,7 +52,7 @@ export async function postSigninAPI(req: Request,res: Response){
 	try{
 		const {name,password} = req.body;
 		const user = await getUserByName(name);
-		if(user === undefined){
+		if(user === undefined || user === null){
 			// user not found with this name
 			res.status(401).send({error:'invalid auth creds'});
 			return;
@@ -90,7 +90,7 @@ export async function postRegister(req: Request,res: Response){
 			return;
 		}
 		const user = await getUserByName(name);
-		if(user !== undefined){
+		if(user !== undefined && user !== null){
 			// existing user found with this name
 			res.render('auth/register',{error: 'user already registered'});
 			return;
@@ -108,7 +108,7 @@ export async function postRegisterAPI(req: Request,res: Response){
 	try{
 		const {name,password} = req.body;
 		const user = await getUserByName(name);
-		if(user !== undefined){
+		if(user !== undefined && user !== null){
 			// existing user found with this name
 			res.status(401).send({error:'username already registered'});
 			return;
