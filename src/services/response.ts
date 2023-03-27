@@ -11,13 +11,33 @@ export async function getReponses(req: Request,res: Response){
 	const user = await getUserByName(req.user!.name);
 	const questions = await getAllQuestions();
 	const response = await getReponseByUser(user!.id);
-	res.render('user/response',{user, questions, response});
+	const files = await getFilesByUser(user!.id);
+	res.render('user/response',{user, questions, response, files});
 }
 
 export async function postResponse(req: Request,res: Response){
 	const user = await getUserByName(req.user!.name);
 	await addResponse(user!.id, req.body);
 	res.sendStatus(200);
+}
+
+
+export async function getResponseFile(req: Request,res: Response){
+	const {uuid} = req.params;
+	const user = await getUserByName(req.user!.name);
+	// get all files of this user
+	const files = await getFilesByUser(user!.id);
+	// search for file with given uuid
+	for(const key in files!.data){
+		const file = (files as any).data[key];
+		if(file.uuid === uuid){
+			// if found, download file
+			res.download(path.join(__dirname,'..','..','data',uuid), file.name);
+			return;
+		}
+	}
+	// else send 404
+	res.sendStatus(404);
 }
 
 export async function postResponseFile(req: Request,res: Response){

@@ -63,6 +63,10 @@ router.get('/api/responses/get/pretty/:userId',requireUserAuth, (req,res)=> {
 	response.getPrettyResponseAPI(req,res);
 });
 
+router.get('/response/file/:uuid', requireUserAuth ,(req,res)=> {
+	response.getResponseFile(req,res);
+});
+
 router.post('/response/file/', requireUserAuth ,(req,res)=> {
 	response.postResponseFile(req,res);
 });
