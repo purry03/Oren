@@ -19,7 +19,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"a@example.com\",\n    \"password\": \"tUcFPR3FBCZPNu9\"\n}",
+							"raw": "{\n    \"name\": \"rohansh.lko@gmail.com\",\n    \"password\": \"1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -27,12 +27,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/signin",
-							"protocol": "http",
+							"raw": "{{host}}/api/auth/signin",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auth",
@@ -60,12 +58,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/register",
-							"protocol": "http",
+							"raw": "{{host}}/api/auth/register",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auth",
@@ -89,12 +85,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users/get/all",
-							"protocol": "http",
+							"raw": "{{host}}/api/users/get/all",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -119,12 +113,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/questions/get/all",
-							"protocol": "http",
+							"raw": "{{host}}/api/questions/get/all",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"questions",
@@ -146,17 +138,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/responses/get/4",
-							"protocol": "http",
+							"raw": "{{host}}/api/responses/get/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"responses",
 								"get",
-								"4"
+								"2"
 							]
 						}
 					},
@@ -168,18 +158,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/responses/get/pretty/4",
-							"protocol": "http",
+							"raw": "{{host}}/api/responses/get/pretty/2",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"responses",
 								"get",
 								"pretty",
-								"4"
+								"2"
 							]
 						}
 					},
@@ -196,12 +184,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/response/file/_opNbFUV",
-							"protocol": "http",
+							"raw": "{{host}}/response/file/_opNbFUV",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"response",
 								"file",
@@ -219,7 +205,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhQGV4YW1wbGUuY29tIiwiaWF0IjoxNjc5ODk0Nzg1fQ.-qBBI6OjnAvGVWBVD-Zlxjz4w-JcvRKdlJ7af_iI5eA",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyb2hhbnNoLmxrb0BnbWFpbC5jb20iLCJpYXQiOjE2Nzk4OTk1NDJ9.rI1GCDlrXDS5ND_y8NjF2c6lUGpvhJY55oIFeGDE5tA",
 				"type": "string"
 			}
 		]
@@ -246,8 +232,8 @@
 	],
 	"variable": [
 		{
-			"key": "sessionToken",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyb2hhbnNoLmxrb0BnbWFpbC5jb20iLCJpYXQiOjE2Nzk4NTE5MjV9.GlGH6k-dGdADPedrIwH57omTrVw-3vI5lbcsZTQtmbg"
+			"key": "host",
+			"value": "http://157.245.195.148:300"
 		}
 	]
 }
