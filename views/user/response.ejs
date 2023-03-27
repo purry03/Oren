@@ -63,10 +63,12 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <% let idx = 0; %>
                         <% for(const elm of response.data[id]){ %>
                         <tr>
-                            <th class="sno">1</th>
+                            <th class="sno"><%=idx%></th>
                             <td><textarea readonly><%=elm%></textarea></td>
+                            <% idx +=1; %>
                         </tr>
                         <%}%>
                         </tbody>
