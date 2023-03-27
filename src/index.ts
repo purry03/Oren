@@ -20,9 +20,9 @@ app.set('view engine', 'ejs');  // set default view engine to ejs
 app.set('views', path.join(__dirname,'..', '/views'));   // set views directory
 
 // Basic Middlewares
-helmet({
+app.use(helmet({
 	contentSecurityPolicy: false,
-});  // obscure headers for security
+}));  // obscure headers for security
 app.use(minify());
 app.use('/static', express.static(path.join(__dirname,'..','/public'))); // set static directory
 app.use(bodyParser.json());
