@@ -9,7 +9,7 @@ Prerequisites:
 ## Setting Up
 
 #### Steps:
-1. Create an `.env` file in the project directory. You can referench the provided `.env.example` file
+1. Create an `.env` file in the project directory. You can reference the provided `.env.example` file
 2. Create a database in PostgreSQL and name it the same as specified in the `.env` file.
 3. Inside the project directory, create data folder if it does not exist already. It must be created beside the src folder.
 4. Run `npm ci` to install the packages
