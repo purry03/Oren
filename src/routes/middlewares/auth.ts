@@ -8,7 +8,7 @@ export async function authExtract(req: Request, res: Response, next: NextFunctio
 	try{
 		let sessionToken = '';
 		const authHeader = req.headers.authorization?.split(' ')[1];	// get auth header
-		if(authHeader !== null){
+		if(typeof authHeader !== 'undefined'){
 			// extract token from header if supplied
 			sessionToken = authHeader!;
 		}

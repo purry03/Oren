@@ -1,4 +1,4 @@
-import { User,Question,Response, UserAttributes, QuestionAttributes, ResponseAttributes } from './index';
+import { User,Question,Response,File, UserAttributes, QuestionAttributes, ResponseAttributes, FileAttribute } from './index';
 
 export async function getUserByName(name: string): Promise<UserAttributes|null>{
 	const user = await User.findOne({
@@ -50,4 +50,11 @@ export async function getReponseByID(id: number): Promise<ResponseAttributes|nul
 export async function getAllResponses(): Promise<ResponseAttributes[]>{
 	const response = await Response.findAll();
 	return response;
+}
+
+export async function getFilesByUser(userId: number|string): Promise<FileAttribute|null>{
+	const files = await File.findOne({
+		where:{user_id: userId},
+	});
+	return files;
 }

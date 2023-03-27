@@ -11,6 +11,7 @@ import config from './config';
 import logger from './utils/logger';
 import router from './routes/';
 import { notFoundHandler } from './routes/middlewares/error';
+import fileUpload from 'express-fileupload';
 
 const app = express();
 
@@ -26,6 +27,9 @@ app.use(minify());
 app.use('/static', express.static(path.join(__dirname,'..','/public'))); // set static directory
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload({
+	limits: { fileSize: 50 * 1024 * 1024 },
+}));
 app.use(cookieParser());
 app.use(authExtract);
 app.use(router.v0); // use v0 routes

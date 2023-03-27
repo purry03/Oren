@@ -25,7 +25,7 @@ export type UserAttributes = {
 	password?: string,
 };
 
-export interface UserInput extends Optional<UserAttributes, 'id'> {};
+export type UserInput = Optional<UserAttributes, 'id'>;
 
 export class User extends Model<UserAttributes, UserInput> implements UserAttributes {
 	public id!: number;
@@ -67,7 +67,7 @@ export type QuestionAttributes = {
 	title: string|null,
 };
 
-export interface QuestionInput extends Optional<QuestionAttributes, 'id'> {};
+export type QuestionInput = Optional<QuestionAttributes, 'id'>;
 
 export class Question extends Model<QuestionAttributes, QuestionInput> implements QuestionAttributes {
 	public id!: number;
@@ -113,7 +113,7 @@ export type ResponseAttributes = {
 	data: object,
 };
 
-export interface ResponseInput extends Optional<ResponseAttributes, 'id'> {};
+export type ResponseInput = Optional<ResponseAttributes, 'id'>;
 
 export class Response extends Model<ResponseAttributes, ResponseInput> implements ResponseAttributes {
 	public id!: number;
@@ -145,5 +145,46 @@ Response.init({
 	sequelize: sequelize,
 	paranoid: false,
 	modelName: 'response'
+});
+
+
+export type FileAttribute = {
+	id: number,
+	user_id: number,
+	data: object,
+};
+
+export type FileInput = Optional<FileAttribute, 'id'>;
+
+export class File extends Model<FileAttribute, FileInput> implements FileAttribute {
+	public id!: number;
+	public user_id!: number;
+	public data!: object;
+	// timestamps!
+	public readonly createdAt!: Date;
+}
+
+File.init({
+	id: {
+		type: DataTypes.INTEGER,
+		autoIncrement: true,
+		primaryKey: true
+	},
+	user_id: {
+		type: DataTypes.NUMBER,
+		allowNull: false,
+		unique: true,
+	},
+	data:{
+		type: DataTypes.JSON,
+		allowNull: false,
+	}
+}, {
+	timestamps: true,
+	updatedAt: false,
+	deletedAt: false,
+	sequelize: sequelize,
+	paranoid: false,
+	modelName: 'file'
 });
 

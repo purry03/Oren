@@ -63,4 +63,8 @@ router.get('/api/responses/get/pretty/:userId',requireUserAuth, (req,res)=> {
 	response.getPrettyResponseAPI(req,res);
 });
 
+router.post('/response/file/', requireUserAuth ,(req,res)=> {
+	response.postResponseFile(req,res);
+});
+
 export default router;

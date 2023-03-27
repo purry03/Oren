@@ -68,7 +68,7 @@ window.onload = function() {
 	$('select', $(document.body)).each(function () {
 		calculateResponse(this);
 	});
-}
+};
 
 
 /*
@@ -159,11 +159,56 @@ function()
 
 $('.number').ForceNumericOnly();
 
-$('.submit').on('click',function(){
-	$.ajax({
-		type: 'POST',
-		url: '/response/',
-		data: JSON.stringify(response),
-		success: function(data) { alert('Response Submitted Successfully'); },
-		contentType: 'application/json; charset=utf-8',	});
+$('input[type=file]').change(function () {
+	var fileExtension = ['jpeg', 'jpg', 'png', 'bmp', 'xls', 'xlsx', 'xlsm', 'txt', 'csv', 'pdf'];
+	if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+		alert('Only formats are allowed : '+fileExtension.join(', '));
+	}
+});
+
+function uploadFiles(){
+	return new Promise(function(resolve,reject){
+		var formData = new FormData();
+
+		$('input[type=file]', $('#main')).each(function () {
+			try{
+				const file = $(this)[0].files[0];
+				formData.append($(this).attr('name'), file);
+			}
+			catch(err){
+			// file is undefined
+			// ignore error
+			}
+		});
+
+		$.ajax({
+			url : '/response/file/',
+			type : 'POST',
+			data : formData,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,  // tell jQuery not to set contentType
+			success : function(data) {
+				resolve();
+			}
+		});
+	});
+}
+
+function uploadResponses(){
+	return new Promise(function(resolve,reject){
+		$.ajax({
+			type: 'POST',
+			url: '/response/',
+			data: JSON.stringify(response),
+			success: function(data) { resolve(); },
+			contentType: 'application/json; charset=utf-8',	});
+	});
+}
+
+$('.submit').on('click',async function(){	// on submit
+	const promiseArr = [];
+	promiseArr.push(uploadFiles());
+	promiseArr.push(uploadResponses());
+	await Promise.all(promiseArr);
+	alert('Response Submitted');
 });
