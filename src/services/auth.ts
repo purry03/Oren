@@ -20,8 +20,8 @@ export async function postSignin(req: Request,res: Response){
 	try{
 		const {name,password} = req.body;
 		const user = await getUserByName(name);
-		if(user === undefined || user === null){
-			// user not found with this name
+		if(user !== null){
+			// existing user found with this name
 			res.status(403).render('auth/signin',{error: true});
 			return;
 		}
@@ -52,8 +52,8 @@ export async function postSigninAPI(req: Request,res: Response){
 	try{
 		const {name,password} = req.body;
 		const user = await getUserByName(name);
-		if(user === undefined || user === null){
-			// user not found with this name
+		if(user !== null){
+			// existing user not found with this name
 			res.status(401).send({error:'invalid auth creds'});
 			return;
 		}
