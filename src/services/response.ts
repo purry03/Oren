@@ -70,7 +70,7 @@ export async function getResponseAPI(req: Request,res: Response,next: NextFuncti
 			return;
 		}
 		const response = await getReponseByUser(userId);
-		if(typeof response === 'undefined'){
+		if(response === null){
 			// if the response does not exist
 			res.send([]);
 			return;

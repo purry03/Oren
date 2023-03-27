@@ -15,7 +15,7 @@ export async function getUsersAPI(req: Request,res: Response){
 	}
 	else{
 		const user = await getUserByID(filter);
-		if(typeof user === 'undefined'){
+		if(user === null){
 			// if user does not exist
 			res.send([]);
 			return;
