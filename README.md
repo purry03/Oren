@@ -355,7 +355,7 @@ Response:
             "Total Employees(F+G)": "9"
         }
     },
-    "attachements": {
+    "attachments": {
         "Mechanism available to receive and redress grievances?": {
             "uuid": "1JLv-Vm3",
             "name": "rr5z7unevpd91.jpg"

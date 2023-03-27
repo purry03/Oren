@@ -161,7 +161,7 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 		}
 	}
 
-	prettyResponses['attachements'] = {};
+	prettyResponses['attachments'] = {};
 
 	if(files !== null){
 	// handle files
@@ -180,10 +180,10 @@ export async function getPrettyResponseAPI(req: Request,res: Response){
 			}
 
 			if(title !== '' && title !== null){	// if question has a title
-				prettyResponses['attachements'][title] = {uuid,name};	// then display attachment with title
+				prettyResponses['attachments'][title] = {uuid,name};	// then display attachment with title
 			}
 			else{
-				prettyResponses['attachements'][question.content] = {uuid,name};	// otherwise use question content
+				prettyResponses['attachments'][question.content] = {uuid,name};	// otherwise use question content
 			}
 
 		}
