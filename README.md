@@ -301,88 +301,73 @@ Method: **GET**<br/>
 Response:
 ```
 {
-    "Corporate Identity Number of the Listed Entity": "3293429231",
-    "Name of Listed Entity": "Microsoft",
-    "Year Of Incorporation": "1994",
-    "Registered Office Address": "New Jersey",
-    "Email": "microsoft.com",
-    "Name and contact details of the person who may be contacted in case of any queries on the BSBR report": "Rishabh Singh\n84002739472",
-    "Locations": {
-        "Number of plants": {
-            "National": "29",
-            "International": "57"
+    "questions": {
+        "Corporate Identity Number of the Listed Entity": "1837438",
+        "Name of Listed Entity": "Google",
+        "Year Of Incorporation": "1998",
+        "Registered Office Address": "CA, USA",
+        "Email": "support@google.com",
+        "Name and contact details of the person who may be contacted in case of any queries on the BSBR report": "Rohan Sharma\n84949472283",
+        "Locations": {
+            "Number of plants": {
+                "National": "83",
+                "International": "36"
+            },
+            "Number of offices": {
+                "National": "36",
+                "International": "85"
+            }
         },
-        "Number of offices": {
-            "National": "58",
-            "International": "15"
-        }
-    },
-    "Types Of Customers": [
-        "Enterprise",
-        "Personal"
-    ],
-    "Mechanism available to receive and redress grievances?": {
-        "Permanent Workers": {
-            "Yes/No": "No",
-            "Details": ""
+        "Types Of Customers": [
+            "Regular",
+            "Government",
+            "Military"
+        ],
+        "Employees": {
+            "Male": {
+                "Permanent Employees(D)": "6",
+                "Other Than Permanent Employees(E)": "8",
+                "Total Employees(D+E)": "3",
+                "Permanent Workers(F)": "6",
+                "Other Than Permanent Wokers(G)": "8",
+                "Total Employees(F+G)": "6"
+            },
+            "Female": {
+                "Permanent Employees(D)": "4",
+                "Other Than Permanent Employees(E)": "5",
+                "Total Employees(D+E)": "7",
+                "Permanent Workers(F)": "5",
+                "Other Than Permanent Wokers(G)": "3",
+                "Total Employees(F+G)": "5"
+            }
         },
-        "Other than Permanent Workers": {
-            "Yes/No": "Yes",
-            "Details": ""
-        },
-        "Permanent Employees": {
-            "Yes/No": "N/A",
-            "Details": ""
-        },
-        "Other than Permament Employees": {
-            "Yes/No": "Yes",
-            "Details": ""
-        }
-    },
-    "Employees": {
-        "Male": {
-            "Permanent Employees(D)": "2",
-            "Other Than Permanent Employees(E)": "7",
-            "Total Employees(D+E)": "9",
-            "Permanent Workers(F)": "4",
-            "Other Than Permanent Wokers(G)": "7",
-            "Total Employees(F+G)": "2"
-        },
-        "Female": {
-            "Permanent Employees(D)": "1",
-            "Other Than Permanent Employees(E)": "8",
-            "Total Employees(D+E)": "0",
-            "Permanent Workers(F)": "4",
-            "Other Than Permanent Wokers(G)": "2",
-            "Total Employees(F+G)": "8"
-        }
-    },
-    "Differently Abled Employees And Workers": {
-        "Male": {
-            "Permanent Employees(D)": "4",
-            "Other Than Permanent Employees(E)": "7",
-            "Total Employees(D+E)": "2",
-            "Permanent Workers(F)": "1",
-            "Other Than Permanent Wokers(G)": "8",
-            "Total Employees(F+G)": "4"
-        },
-        "Female": {
-            "Permanent Employees(D)": "6",
-            "Other Than Permanent Employees(E)": "0",
-            "Total Employees(D+E)": "3",
-            "Permanent Workers(F)": "8",
-            "Other Than Permanent Wokers(G)": "2",
-            "Total Employees(F+G)": "9"
+        "Differently Abled Employees And Workers": {
+            "Male": {
+                "Permanent Employees(D)": "8",
+                "Other Than Permanent Employees(E)": "5",
+                "Total Employees(D+E)": "3",
+                "Permanent Workers(F)": "5",
+                "Other Than Permanent Wokers(G)": "7",
+                "Total Employees(F+G)": "6"
+            },
+            "Female": {
+                "Permanent Employees(D)": "9",
+                "Other Than Permanent Employees(E)": "3",
+                "Total Employees(D+E)": "9",
+                "Permanent Workers(F)": "4",
+                "Other Than Permanent Wokers(G)": "4",
+                "Total Employees(F+G)": "0"
+            }
         }
     },
     "attachments": {
-        "Mechanism available to receive and redress grievances?": {
-            "uuid": "1JLv-Vm3",
-            "name": "rr5z7unevpd91.jpg"
+        "Locations": {
+            "uuid": "X-aUB-NJ",
+            "name": "hrrecords.png"
         },
         "Employee Count": {
-            "uuid": "dGbXqgPF",
-            "name": "Screenshot from 2023-03-23 15-56-40.png"
+            "uuid": "UaCx4pAS",
+            "name": "list.png"
         }
     }
 }
