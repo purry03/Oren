@@ -27,6 +27,10 @@ export async function getResponseFile(req: Request,res: Response){
 	const user = await getUserByName(req.user!.name);
 	// get all files of this user
 	const files = await getFilesByUser(user!.id);
+	if(files === null){
+		res.sendStatus(404);
+		return;
+	}
 	// search for file with given uuid
 	for(const key in files!.data){
 		const file = (files as any).data[key];
