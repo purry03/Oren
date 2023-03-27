@@ -7,6 +7,7 @@ import {getUserByName} from '../database/read';
 import {addUser} from '../database/write';
 
 import { errorHandler } from '../routes/middlewares/error';
+import logger from '../utils/logger';
 
 export async function getIndex(req: Request,res: Response){
 	res.render('auth/index');
@@ -20,8 +21,9 @@ export async function postSignin(req: Request,res: Response){
 	try{
 		const {name,password} = req.body;
 		const user = await getUserByName(name);
-		if(user !== null){
-			// existing user found with this name
+		if(user === undefined || user === null){
+			// user not found with this name
+			logger.debug(`${name} submitted invalid email`);
 			res.status(403).render('auth/signin',{error: true});
 			return;
 		}
@@ -37,6 +39,7 @@ export async function postSignin(req: Request,res: Response){
 			return;
 		}
 		else{
+			logger.debug(`${user.name} submitted invalid password`);
 			res.render('auth/signin',{error: true});
 			return;
 		}
@@ -52,8 +55,9 @@ export async function postSigninAPI(req: Request,res: Response){
 	try{
 		const {name,password} = req.body;
 		const user = await getUserByName(name);
-		if(user !== null){
-			// existing user not found with this name
+		if(user === undefined || user === null){
+			// user not found with this name
+			logger.debug(`${name} submitted invalid email`);
 			res.status(401).send({error:'invalid auth creds'});
 			return;
 		}
@@ -68,6 +72,7 @@ export async function postSigninAPI(req: Request,res: Response){
 			return;
 		}
 		else{
+			logger.debug(`${user.name} submitted invalid password`);
 			res.status(401).send({error:'invalid auth creds'});
 			return;
 		}
